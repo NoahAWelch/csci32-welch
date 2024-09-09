@@ -1,37 +1,62 @@
 import Image from 'next/image'
+import Navbar from './Components/Navbar'
+import PageTitle from './Components/PageTitle'
+import React from 'react'
+import Footer from './Components/Footer'
 
 export default function Home() {
   return (
-    <div className="min-w-screen min-h-screen p-6  border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-      <a href="#">
-        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-          Noteworthy technology acquisitions 2021
-        </h5>
-      </a>
-      <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-        Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.
-      </p>
-      <a
-        href="#"
-        className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+    <div>
+      <div
+        className="text-center min-w-screen min-h-screen p-6  border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+        style={{ backgroundImage: `url('/old-books-436498_640.jpg')` }}
       >
-        Read more
-        <svg
-          className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 14 10"
-        >
-          <path
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M1 5h12m0 0L9 1m4 4L9 9"
-          />
-        </svg>
-      </a>
+        <PageTitle title="Home" />
+        <Navbar />
+
+        <div className="flex flex-row justify-evenly">
+          <div className="p-12 m-40 transition-all bg-blue-300 shadow-lg border border-red-300 rounded-lg hover:scale-110 hover:bg-red-400 bg-gradient-to-r from-yellow-600 to-red-600' grow">
+            <a href="PrideandPrejudice">
+              <h1 className="text-black px-6 text-2xl">Pride and Prejudice</h1>
+            </a>
+          </div>
+
+          <div className=" p-12 m-40 transition-all bg-gray-500 shadow-lg border border-red-300 rounded-lg hover:scale-110 hover:bg-green-400 bg-gradient-to-r from-yellow-600 to-red-600' grow">
+            <a href="book2">
+              <h1 className="text-black px-6 text-3xl">book name </h1>
+            </a>
+            <p className="text-black ">Score out of 10</p>
+            <p className="text-black ">reccomend or not</p>
+            <p className="text-black ">reveiw</p>
+          </div>
+
+          <div className=" p-12 m-40 transition-all bg-pink-300 shadow-lg border border-red-300 rounded-lg hover:scale-110 hover:bg-indigo-400 bg-gradient-to-r from-yellow-600 to-red-600' grow">
+            <a href="week1-page">
+              <h1 className="text-black px-6 text-3xl">book name </h1>
+            </a>
+          </div>
+        </div>
+
+        <div className="flex flex-row justify-evenly">
+          <div className=" p-12 m-40 transition-all bg-red-400 shadow-lg border border-red-300 rounded-lg hover:scale-110 hover:bg-blue-400 bg-gradient-to-r from-yellow-600 to-red-600' grow">
+            <a href="week1-page">
+              <h1 className="text-black px-6 text-3xl">book name </h1>
+            </a>
+          </div>
+
+          <div className=" p-12 m-40 transition-all bg-indigo-300 shadow-lg border border-red-300 rounded-lg hover:scale-110 hover:bg-yellow-400 bg-gradient-to-r from-yellow-600 to-red-600' grow">
+            <a href="week1-page">
+              <h1 className="text-black px-6 text-3xl">book name </h1>
+            </a>
+          </div>
+          <div className=" p-12 m-40 transition-all bg-green-300 shadow-lg border border-red-300 rounded-lg hover:scale-110 hover:bg-pink-400 bg-gradient-to-r from-yellow-600 to-red-600' grow">
+            <a href="week1-page">
+              <h1 className="text-black px-6 text-3xl">book name </h1>
+            </a>
+          </div>
+        </div>
+      </div>
+      <Footer />
     </div>
   )
 }
