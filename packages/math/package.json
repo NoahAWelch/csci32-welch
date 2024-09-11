@@ -8,6 +8,8 @@
   "exports": {
     "./add": {
       "types": "./src/add.ts",
+      "size": "./src/size.ts",
+      "variant": "./src/variant.ts",
       "default": "./dist/add.js"
     },
     "./subtract": {

@@ -8,6 +8,10 @@ const navbarList = [
     title: 'All Books',
     href: '/week1-page',
   },
+  {
+    title: 'Button',
+    href: '/Button',
+  },
 ]
 
 export default function Navbar() {

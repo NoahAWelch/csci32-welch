@@ -8,6 +8,12 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "exports": {
+    ".": {
+      "import": ".packages/ui/src/index.js"
+    },
+    "./style.css": "./src/style.css"
+  },
   "dependencies": {
     "@repo/ui": "*",
     "@repo/math": "*",
