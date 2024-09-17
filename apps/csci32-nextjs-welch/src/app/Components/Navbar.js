@@ -12,6 +12,10 @@ const navbarList = [
     title: 'Button',
     href: '/Button',
   },
+  {
+    title: 'Input',
+    href: '/Input',
+  },
 ]
 
 export default function Navbar() {

@@ -12,6 +12,8 @@
     "./styles.css": "./dist/index.css",
     "./button": "./src/button.tsx",
     "./card": "./src/card.tsx",
+    "./tokens": "./src/tokens.ts",
+    "./input": "./src/input.tsx",
     "./code": "./src/code.tsx"
   },
   "scripts": {
