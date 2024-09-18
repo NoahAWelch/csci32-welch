@@ -10,7 +10,7 @@
   },
   "exports": {
     ".": {
-      "import": ".packages/ui/src/index.js"
+      "import": "./packages/ui/src/index.js"
     },
     "./style.css": "./src/style.css"
   },

@@ -9,8 +9,8 @@ const navbarList = [
     href: '/week1-page',
   },
   {
-    title: 'Button',
-    href: '/Button',
+    title: 'Input',
+    href: '/Input',
   },
   {
     title: 'Input',
