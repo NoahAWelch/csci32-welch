@@ -3,12 +3,10 @@ import Navbar from './Components/Navbar'
 import PageTitle from './Components/PageTitle'
 import React from 'react'
 import Footer from './Components/Footer'
-import { add } from '@repo/math/add'
 
 export default function Home() {
   return (
     <div>
-      <div className="text-xl">{add(1, 2)}</div>;
       <div>
         <div
           className="text-center min-w-screen min-h-screen p-6  border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
