@@ -25,6 +25,7 @@ export default function ButtonProps() {
             id="number"
           />
           <Button onClick={() => alert(`Enter your name: ${name}`)} size={Sizes.Medium} variant={Variants.Primary}>
+            {' '}
             Name
           </Button>
         </div>
