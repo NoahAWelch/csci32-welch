@@ -15,10 +15,12 @@
     "./subtract": {
       "types": "./src/subtract.ts",
       "default": "./dist/subtract.js"
+    },
+    "./getRandomInteger": {
+      "random": "./src/getRandomInteger.ts"
     }
   },
   "devDependencies": {
-    "@repo/typescript-config": "*",
     "typescript": "latest"
   }
 }

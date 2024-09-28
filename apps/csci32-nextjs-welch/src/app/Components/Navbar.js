@@ -13,8 +13,8 @@ const navbarList = [
     href: '/Input',
   },
   {
-    title: 'Input',
-    href: '/Input',
+    title: 'guessing game',
+    href: '/Games/random-number-guesser',
   },
 ]
 
