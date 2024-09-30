@@ -67,10 +67,10 @@ export default function RandomNumberGame({ randomNumber, endGame, maxGuessCount 
             variant={Variants.Primary}
             setValue={(newValue) => setGuess(Number(newValue))}
           />
-
           <div>{feedBack}</div>
           <div>you have guessed {guessCount} times</div>
-          <div>you have {maxGuessCount - guessCount} left THINK CAREFULLY!</div>
+          <div>you have {maxGuessCount - guessCount} left</div>
+          {maxGuessCount - guessCount === 1 && <p>THINK CARFRULLY!</p>}
           <Button className="mx-60 border-12 bg-green-500">Enter guess</Button>
         </form>
       )}
