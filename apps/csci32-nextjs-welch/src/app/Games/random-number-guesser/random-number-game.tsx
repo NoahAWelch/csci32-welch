@@ -4,6 +4,7 @@ import { FormEventHandler, useState } from 'react'
 import { GuessingGameEngineProps } from './page'
 import Input from '../../../../../../packages/ui/src/input'
 import { Variants } from '../../../../../../packages/ui/src/variant'
+import { getRandomInteger } from '../../../../../../packages/math/src/getRandomInteger'
 
 export default function RandomNumberGame({ randomNumber, endGame, maxGuessCount }: GuessingGameEngineProps) {
   const [guessCount, setGuessCount] = useState(0)
@@ -12,7 +13,9 @@ export default function RandomNumberGame({ randomNumber, endGame, maxGuessCount 
   const [hasWon, setGameOver] = useState(false)
   const [lose, gameOverLoss] = useState(false)
   const [win, gameOverWin] = useState(false)
-
+  const min: number = 0
+  const max: number = 10
+  const suggestion = getRandomInteger({ min, max })
   function submitGuess(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     const newGuessCount = guessCount + 1
@@ -70,7 +73,8 @@ export default function RandomNumberGame({ randomNumber, endGame, maxGuessCount 
           <div>{feedBack}</div>
           <div>you have guessed {guessCount} times</div>
           <div>you have {maxGuessCount - guessCount} left</div>
-          {maxGuessCount - guessCount === 1 && <p>THINK CARFRULLY!</p>}
+          {maxGuessCount - guessCount === 1 && <p>THINK CARFRULLY! try {suggestion}</p>}
+
           <Button className="mx-60 border-12 bg-green-500">Enter guess</Button>
         </form>
       )}
