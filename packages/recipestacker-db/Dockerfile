@@ -10,7 +10,7 @@
 FROM node:alpine
 
 # Set the working directory in the container
-WORKDIR /csci32-welch
+WORKDIR /apps/csci32-welch
 
 # Copy package.json and package-lock.json
 COPY package*.json ./

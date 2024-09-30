@@ -21,13 +21,18 @@ export default function RandomNumberGame({ randomNumber, endGame, maxGuessCount 
     } else if (guess > randomNumber) {
       setFeedBack('Lower')
     } else {
-      setFeedBack(`You won the game with ${newGuessCount} guesses left! The number was ${randomNumber}`)
+      setFeedBack(`You won the game with ${maxGuessCount - newGuessCount} guesses left! The number was ${randomNumber}`)
       setGameOver(true)
       gameOverLoss(false)
       gameOverWin(true)
     }
     setGuessCount(newGuessCount)
-    if (newGuessCount === maxGuessCount && !hasWon) {
+    if (newGuessCount === maxGuessCount && randomNumber === guess) {
+      setFeedBack(`You win! The number was ${randomNumber}.`)
+      setGameOver(true)
+      gameOverLoss(false)
+      gameOverWin(true)
+    } else if (newGuessCount === maxGuessCount && !hasWon) {
       setFeedBack(`You lose! The number was ${randomNumber}.`)
       setGameOver(true)
       gameOverLoss(true)
@@ -44,15 +49,15 @@ export default function RandomNumberGame({ randomNumber, endGame, maxGuessCount 
   }
   return (
     <div
-      className={`${maxGuessCount - 1 === guessCount ? 'bg-red-400' : ''} ${maxGuessCount === guessCount ? 'bg-red-800' : ''} ${win ? '!bg-green-500' : lose ? 'bg-red-800' : ''} p-10 rounded-lg transition-color`}
+      className={`${maxGuessCount - 1 === guessCount ? 'bg-red-600 animate-pulse' : ''} ${maxGuessCount - 2 === guessCount ? 'bg-red-400' : ''}${maxGuessCount === guessCount ? 'bg-red-800' : ''} ${win ? '!bg-green-500' : lose ? 'bg-red-800' : ''} p-10 rounded-lg text-center bg-gray-500 transition-color`}
     >
       {hasWon ? (
         <form>
-          <div className="text-black">{feedBack}</div>
-          <Button>end game</Button>
+          <div className="text-black py-12">{feedBack}</div>
+          <Button className="mx-60 py-2 border-1">Reset game</Button>
         </form>
       ) : (
-        <form onSubmit={submitGuess}>
+        <form onSubmit={submitGuess} className="flex flex-col place-items-center">
           <Input
             name="guess"
             id="guess"
@@ -65,8 +70,8 @@ export default function RandomNumberGame({ randomNumber, endGame, maxGuessCount 
 
           <div>{feedBack}</div>
           <div>you have guessed {guessCount} times</div>
-          <div>you have {maxGuessCount - guessCount} left</div>
-          <Button>lucky guess</Button>
+          <div>you have {maxGuessCount - guessCount} left THINK CAREFULLY!</div>
+          <Button className="mx-60 border-12 bg-green-500">Enter guess</Button>
         </form>
       )}
     </div>

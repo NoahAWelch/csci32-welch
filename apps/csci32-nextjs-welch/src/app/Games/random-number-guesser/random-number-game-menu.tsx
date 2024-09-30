@@ -22,13 +22,13 @@ export default function RandomNumberGameMenu({ startGame }: GuessingGameMenuProp
   return (
     <div className="flex flex-col gap-4">
       {settings ? (
-        <div className="flex flex-col gap-4 bg-gray-500">
+        <div className="flex flex-col gap-4 rounded-lg bg-gray-500">
           <header>
-            <h1 className="text-2xl font-bold">please enter your min number guesse</h1>
+            <h1 className="text-2xl font-bold">please enter your min number guess</h1>
           </header>
           <form className="flex flex-col gap-4 bg-gray-500 py-2" onSubmit={onSubmitSettings}>
             <Input defaultValue={0} type="number" placeholder={'Minimum guessing value'} name="minimum" id="minimum" />
-            <h2 className="text-2xl font-bold">and max number guesse</h2>
+            <h2 className="text-2xl font-bold">and max number guess</h2>
             <Input defaultValue={10} type="number" placeholder={'Maximum guessing value'} name="maximum" id="maximum" />
             <h3 className="text-2xl font-bold">and enter the number of guesses you want to have.</h3>
             <Input
@@ -39,23 +39,24 @@ export default function RandomNumberGameMenu({ startGame }: GuessingGameMenuProp
               id="maxGuessCount"
             />
 
-            <Button className="bg-yellow-500">Submit</Button>
+            <Button className="">Submit</Button>
           </form>
         </div>
       ) : (
-        <div className="flex-flex-col text-black gap-4 place-self-center bg-gray-500">
+        <div className="flex-flex-col min-h-screen min-w-full text-black gap-4 bg-gray-500">
           <header className="flex-flex-col gap-4 bg-gray-300 text-center">
-            <h1 className="text-2xl font-bold">Welcome</h1>
-            <p>ready</p>
-            <p>play</p>
+            <h1 className="text-2xl font-bold p-2">Welcome! to the guessing game</h1>
+            <p>Are you ready to play</p>
+            <p className="p-2">the guessing game!</p>
           </header>
           <form
+            className="text-3xl border rounded-xl shadow-lg bg-blue-500 flex justify-center p-12 m-48"
             onSubmit={(e) => {
               e.preventDefault()
               gameSettings(true)
             }}
           >
-            <Button>Start</Button>
+            <Button className="shadow-xxl bg-blue-700 transition-all hover:scale-110">START</Button>
           </form>
         </div>
       )}
