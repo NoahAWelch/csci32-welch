@@ -1,4 +1,4 @@
-version: '3'
+#version: '3'
 
 volumes:
   database:
@@ -11,7 +11,7 @@ services:
     container_name: turborepo_mysql
     restart: always
     ports:
-      - 3307:3307
+      - 3307:3306
     environment:
       MYSQL_DATABASE: turborepo
       MYSQL_ALLOW_EMPTY_PASSWORD: 1

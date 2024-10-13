@@ -1,5 +1,5 @@
 {
-  "name": "@repo/recipestacker-database",
+  "name": "@repo/recipestacker-db",
   "version": "1.0.0",
   "exports": {
     ".": "./src/client.ts"
@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@prisma/client": "^5.20.0",
-    "next": "^13.0.0"
+    "next": "^14.2.14"
   },
   "devDependencies": {
     "eslint": "^8.57.0",

@@ -1,0 +1,45 @@
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  user_id            String    @id @default(cuid())
+  user_name          String?
+  email              String?   @unique
+  password           String?
+  books Book[]         @relation("User_Books")
+}
+
+model Book {
+  book_id            String      @id @default(cuid())
+  book_name          String?
+  author_id String
+  misc Misc?
+  user_id String
+  author Author @relation(fields: [author_id], references: [author_id])
+  user User          @relation(fields: [user_id], references: [user_id])
+}
+
+model Author {
+  author_id          String @id @default(cuid())
+  author_name        String?
+  books Book[]
+   @relation("AuthorBooks")
+  miscs       Misc[]
+}
+
+model Misc {
+  misc_id String @id @default(cuid())
+  book_description   String?
+  book_rating        Int @default(0)
+  book Book  @relation(fields: [book_id], references: [book_id])
+  book_id            String
+
+}
