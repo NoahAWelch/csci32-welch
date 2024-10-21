@@ -14,6 +14,15 @@
     "./card": "./src/card.tsx",
     "./tokens": "./src/tokens.ts",
     "./input": "./src/input.tsx",
+    "./flex": "./src/flex.tsx",
+    "./field": "./src/field.tsx",
+    "./fieldGroup": "./src/fieldGroup.tsx",
+    "./header": "./src/header.tsx",
+    "./label": "./src/label.tsx",
+    "./wrapper": "./src/wrapper.tsx",
+    "./tag": "./src/tag.tsx",
+    "./size": "./src/size.ts",
+    "./variant": "./src/variant.ts",
     "./code": "./src/code.tsx"
   },
   "scripts": {

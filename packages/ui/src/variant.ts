@@ -3,6 +3,8 @@ export enum Variants {
   Secondary = 'Secondary',
   Tertiary = 'Tertiary',
   TertiaryReview = 'TertiaryReview',
+  ALERT = 'ALERT',
+  ERROR = 'ERROR',
 }
 
 export function getVariant(variant: Variants) {
@@ -15,6 +17,10 @@ export function getVariant(variant: Variants) {
       return 'bg-red-600 hover:bg-red-800 active:bg-red-900'
     case Variants.TertiaryReview:
       return 'bg-purple-600 hover:bg-purple-800 active:bg-purple-900'
+    case Variants.ERROR:
+      return 'bg-red-600 hover:bg-red-700 active:bg-red-800'
+    case Variants.ALERT:
+      return 'bg-amber-600 hover:bg-amber-700 active:bg-amber-800'
   }
 }
 export function getVariantOutlineStyles(variant: Variants) {
@@ -27,6 +33,10 @@ export function getVariantOutlineStyles(variant: Variants) {
       return 'outline-blue-600'
     case Variants.TertiaryReview:
       return 'outline-pink-600'
+    case Variants.ERROR:
+      return 'outline-red-600'
+    case Variants.ALERT:
+      return 'outline-amber-600'
   }
 }
 export function getVariantBorderStyles(variant: Variants) {
@@ -39,6 +49,10 @@ export function getVariantBorderStyles(variant: Variants) {
       return 'border-2 border-green-600'
     case Variants.TertiaryReview:
       return 'border-2 border-gray-600'
+    case Variants.ERROR:
+      return 'border-2 border-red-600'
+    case Variants.ALERT:
+      return 'border-2 border-amber-600'
   }
 }
 export function getVariantTextStyles(variant: Variants) {
@@ -51,5 +65,26 @@ export function getVariantTextStyles(variant: Variants) {
       return 'text-black font-bold'
     case Variants.TertiaryReview:
       return 'text-black font-bold'
+    case Variants.ERROR:
+      return 'text-black'
+    case Variants.ALERT:
+      return 'text-black'
   }
+
+  export function getVariantButtonTextStyles(variant: Variants) {
+    switch (variant) {
+      case Variants.Primary:
+        return 'text-white font-bold'
+      case Variants.Secondary:
+        return 'text-white font-bold '
+      case Variants.Tertiary:
+        return 'text-white font-bold'
+      case Variants.TertiaryReview:
+        return 'text-white font-bold'
+      case Variants.ERROR:
+        return 'text-white'
+      case Variants.ALERT:
+        return 'text-white'
+    }
+
 }
