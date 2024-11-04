@@ -1,20 +1,20 @@
 import classNames from 'classnames'
-import { getVariantBackgroundStyles, getVariantButtonTextStyles, Variant } from './variant'
+import { Variants, getVariantButtonTextStyles, getVariant } from './variant'
 import { getCommonButtonStyles } from './tokens'
-import { getSizeStyles, Size } from './size'
+import { getInputSizesStyles, Sizes } from './size'
 
 export type TagProps = {
   children: React.ReactNode
   onClickX?: () => void
   className?: string
-  variant?: Variant
+  variant?: Variants
 }
 
-export function Tag({ children, className = '', variant = Variant.PRIMARY, onClickX }: TagProps) {
-  const tagBackgroundStyles = getVariantBackgroundStyles(variant)
+export function Tag({ children, className = '', variant = Variants.Primary, onClickX }: TagProps) {
+  const tagBackgroundStyles = getVariant(variant)
   const tagTextStyles = getVariantButtonTextStyles(variant)
   const tagButtonStyles = getCommonButtonStyles()
-  const tagSizeStyles = getSizeStyles(Size.XSMALL)
+  const tagSizeStyles = getInputSizesStyles(Sizes.XSMALL)
   return (
     <div
       className={classNames(

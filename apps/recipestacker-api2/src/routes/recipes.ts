@@ -3,7 +3,7 @@ import Fastify from 'fastify'
 import { Type } from '@sinclair/typebox'
 import { FastifyPluginAsync } from 'fastify'
 
-export const UpsertIngredientMeasurmentTypeboxType = Type.Object({
+export const UpsertIngredientMeasurementTypeboxType = Type.Object({
   unit: Type.Optional(Type.String()),
   quantity: Type.Optional(Type.Number()),
   ingredient_id: Type.Optional(Type.String()),
@@ -14,16 +14,16 @@ export const UpsertIngredientMeasurmentTypeboxType = Type.Object({
 export const UpdateRecipeTypeBoxType = Type.Object({
   name: Type.Optional(Type.String()),
   description: Type.Optional(Type.String()),
-  ingredient_measurments: Type.Optional(Type.Array(UpsertIngredientMeasurmentTypeboxType)),
+  ingredient_measurements: Type.Optional(Type.Array(UpsertIngredientMeasurementTypeboxType)),
 })
 
 export const CreateRecipeTypeboxType = Type.Object({
   name: Type.String(),
   description: Type.String(),
-  ingredient_measurments: Type.Array(UpsertIngredientMeasurmentTypeboxType),
+  ingredient_measurements: Type.Array(UpsertIngredientMeasurementTypeboxType),
 })
 
-export const IngredientMeasurmentTypeboxType = Type.Object({
+export const IngredientMeasurementTypeboxType = Type.Object({
   unit: Type.Optional(Type.String()),
   quantity: Type.Optional(Type.Number()),
   ingredient: Type.Object({
@@ -36,7 +36,7 @@ export const IngredientMeasurmentTypeboxType = Type.Object({
 export const RecipeType = Type.Object({
   recipe_id: Type.String(),
   name: Type.Union([Type.String(), Type.Null()]),
-  ingredient_measurments: Type.Array(IngredientMeasurmentTypeboxType),
+  ingredient_measurements: Type.Array(IngredientMeasurementTypeboxType),
   description: Type.String(),
   user_id: Type.String(),
 })
@@ -97,7 +97,7 @@ const recipe: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
         recipe_id: request.params.id,
         name: request.body.name,
         description: request.body.description,
-        ingredient_measurments: request.body.ingredient_measurments,
+        ingredient_measurements: request.body.ingredient_measurements,
       })
     },
   )
@@ -142,7 +142,7 @@ const recipe: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
       return fastify.recipeService.createOneRecipe({
         name: request.body.name,
         description: request.body.description,
-        ingredient_measurments: request.body.ingredient_measurments,
+        ingredient_measurements: request.body.ingredient_measurements,
       })
     },
   )

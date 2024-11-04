@@ -47,15 +47,15 @@ export default function Input({
     />
   )
 }*/
-import { getInputSizeStyles, Size } from './size'
+import { getInputSizesStyles, Sizes } from './size'
 import { HTMLInputTypeAttribute, useState } from 'react'
-import { getVariantBorderStyles, getVariantInputTextStyles, getVariantOutlineStyles, Variant } from './variant'
+import { getVariantBorderStyles, getVariantTextStyles, getVariantOutlineStyles, Variants } from './variant'
 import { getCommonInputStyles } from './tokens'
 import { noop } from 'lodash'
 
 interface InputProps {
-  variant?: Variant
-  size?: Size
+  variant?: Variants
+  size?: Sizes
   placeholder?: string
   type?: HTMLInputTypeAttribute
   value?: any
@@ -67,8 +67,8 @@ interface InputProps {
   id: string
 }
 export function Input({
-  variant = Variant.PRIMARY,
-  size = Size.MEDIUM,
+  variant = Variants.Primary,
+  size = Sizes.Medium,
   value,
   name,
   id,
@@ -80,10 +80,10 @@ export function Input({
   placeholder,
 }: InputProps) {
   const [internalValue, setInternalValue] = useState(value)
-  const sizeCssClasses = getInputSizeStyles(size)
+  const sizeCssClasses = getInputSizesStyles(size)
   const variantOutlineCssClasses = getVariantOutlineStyles(variant)
   const variantBorderCssClasses = getVariantBorderStyles(variant)
-  const variantInputTextCssClasses = getVariantInputTextStyles(variant)
+  const variantInputTextCssClasses = getVariantTextStyles(variant)
   const commonCssClasses = getCommonInputStyles()
 
   function handleKeyUp(e: React.KeyboardEvent<HTMLInputElement>) {

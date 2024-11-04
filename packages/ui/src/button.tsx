@@ -41,10 +41,16 @@ export const Button = ({
   )
 }*/
 'use client'
-
+import { getCommons } from './tokens'
 import { ReactNode } from 'react'
-import { getSizeStyles, Size } from './size'
-import { getVariantBackgroundStyles, getVariantButtonTextStyles, getVariantOutlineStyles, Variant } from './variant'
+import { getInputSizesStyles, Sizes } from './size'
+import {
+  Variants,
+  getVariant,
+  getVariantButtonTextStyles,
+  getVariantOutlineStyles,
+  getVariantBorderStyles,
+} from './variant'
 import { getCommonButtonStyles } from './tokens'
 
 interface ButtonProps {
@@ -53,8 +59,8 @@ interface ButtonProps {
   href?: string
   onClick?: () => void
   type?: 'button' | 'submit' | 'reset'
-  size?: Size
-  variant?: Variant
+  size?: Sizes
+  variant?: Variants
 }
 
 export const Button = ({
@@ -63,16 +69,17 @@ export const Button = ({
   href,
   type = 'button',
   onClick,
-  size = Size.MEDIUM,
-  variant = Variant.PRIMARY,
+  size = Sizes.Medium,
+  variant = Variants.Primary,
 }: ButtonProps) => {
-  const sizeCssClasses = getSizeStyles(size)
+  const sizeCssClasses = getInputSizesStyles(size)
   const variantButtonTextCssClasses = getVariantButtonTextStyles(variant)
-  const variantBackgroundCssClasses = getVariantBackgroundStyles(variant)
+  const variantBackgroundCssClasses = getVariant(variant)
+  const variantBorderClasses = getVariantBorderStyles(variant)
   const variantOutlineCssClasses = getVariantOutlineStyles(variant)
   const commonCssClasses = getCommonButtonStyles()
 
-  const completedCssClasses = `${sizeCssClasses} ${variantBackgroundCssClasses}  ${variantOutlineCssClasses} ${commonCssClasses} ${variantButtonTextCssClasses} ${className}`
+  const completedCssClasses = `${sizeCssClasses} ${variantBackgroundCssClasses}  ${variantOutlineCssClasses} ${commonCssClasses} ${variantButtonTextCssClasses} ${variantBorderClasses} ${className}`
   return href ? (
     <a href={href} className={completedCssClasses}>
       {children}

@@ -38,13 +38,13 @@ interface UpdateOneRecipeProps {
   recipe_id: string
   name: string
   description: string
-  ingredient_measurments: CreateIngredientMeasurementProps[]
+  ingredient_measurements: CreateIngredientMeasurementProps[]
 }
 
 interface CreateOneRecipeProps {
   name: string
   description: string
-  ingredient_measurments: CreateIngredientMeasurementProps[]
+  ingredient_measurements: CreateIngredientMeasurementProps[]
 }
 
 interface GetRecipeOrderByProps {
@@ -64,7 +64,8 @@ export class RecipeService {
   getRecipeOrderBy({
     sortOrder,
     sortColumn,
-  }: GetRecipeOrderByProps): Prisma.RecipeOrderByWithRelationInput | Prisma.RecipeOrderByWithRelationInput[] {
+  }: GetRecipeOrderByProps): Prisma.UserOrderByWithRelationInput | Prisma.UserOrderByWithRelationInput[] {
+    //RecipeOrderByWithRelationInput
     return {
       [sortColumn]: sortOrder,
     }
@@ -78,7 +79,7 @@ export class RecipeService {
         recipe_id,
       },
       include: {
-        ingredient_measurments: {
+        ingredient_measurements: {
           include: {
             ingredient: true,
           },
@@ -91,7 +92,7 @@ export class RecipeService {
     this.logger.info({ props }, 'updateOneRecipes')
     // const user_id = ''
     const { user_id } = await this.prisma.user.findFirstOrThrow()
-    const { ingredient_measurments, recipe_id, ...rest } = props
+    const { ingredient_measurements, recipe_id, ...rest } = props
     const updatedRecipe = await this.prisma.recipe.update({
       where: {
         recipe_id,
@@ -101,8 +102,8 @@ export class RecipeService {
         user: {
           connect: { user_id },
         },
-        ingredient_measurments: {
-          upsert: ingredient_measurments?.map(
+        ingredient_measurements: {
+          upsert: ingredient_measurements?.map(
             ({ ingredient_id, ingredient_name, ingredient_description, quantity, unit }) => ({
               where: {
                 ingredient_id_recipe_id: {
@@ -152,7 +153,7 @@ export class RecipeService {
       take,
       skip,
       include: {
-        ingredient_measurments: {
+        ingredient_measurements: {
           include: {
             ingredient: true,
           },
@@ -162,7 +163,7 @@ export class RecipeService {
   }
 
   async createOneRecipe(props: CreateOneRecipeProps) {
-    const { name, description, ingredient_measurments } = props
+    const { name, description, ingredient_measurements } = props
     const { user_id } = await this.prisma.user.findFirstOrThrow()
     const recipe = await this.prisma.recipe.create({
       data: {
@@ -173,8 +174,8 @@ export class RecipeService {
         },
         name,
         description,
-        ingredient_measurments: {
-          create: ingredient_measurments.map(
+        ingredient_measurements: {
+          create: ingredient_measurements.map(
             ({ ingredient_id, ingredient_description, ingredient_name, unit, quantity }) => ({
               ingredient: ingredient_id
                 ? {

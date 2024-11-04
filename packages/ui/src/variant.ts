@@ -1,10 +1,11 @@
 export enum Variants {
-  Primary = 'Primary',
-  Secondary = 'Secondary',
-  Tertiary = 'Tertiary',
-  TertiaryReview = 'TertiaryReview',
-  ALERT = 'ALERT',
-  ERROR = 'ERROR',
+  Primary,
+  Secondary,
+  Secondary2,
+  Tertiary,
+  TertiaryReview,
+  ALERT,
+  ERROR,
 }
 
 export function getVariant(variant: Variants) {
@@ -13,6 +14,8 @@ export function getVariant(variant: Variants) {
       return 'bg-blue-600 hover:bg-blue-800 active:bg-blue-900'
     case Variants.Secondary:
       return 'bg-green-600 hover:bg-green-800 active:bg-green-900'
+    case Variants.Secondary2:
+      return 'bg-green-700 hover:bg-green-800 active:bg-green-900'
     case Variants.Tertiary:
       return 'bg-red-600 hover:bg-red-800 active:bg-red-900'
     case Variants.TertiaryReview:
@@ -70,21 +73,20 @@ export function getVariantTextStyles(variant: Variants) {
     case Variants.ALERT:
       return 'text-black'
   }
-
-  export function getVariantButtonTextStyles(variant: Variants) {
-    switch (variant) {
-      case Variants.Primary:
-        return 'text-white font-bold'
-      case Variants.Secondary:
-        return 'text-white font-bold '
-      case Variants.Tertiary:
-        return 'text-white font-bold'
-      case Variants.TertiaryReview:
-        return 'text-white font-bold'
-      case Variants.ERROR:
-        return 'text-white'
-      case Variants.ALERT:
-        return 'text-white'
-    }
-
+}
+export function getVariantButtonTextStyles(variant: Variants) {
+  switch (variant) {
+    case Variants.Primary:
+      return 'text-white font-bold'
+    case Variants.Secondary:
+      return 'text-white font-bold '
+    case Variants.Tertiary:
+      return 'text-white font-bold'
+    case Variants.TertiaryReview:
+      return 'text-white font-bold'
+    case Variants.ERROR:
+      return 'text-white'
+    case Variants.ALERT:
+      return 'text-white'
+  }
 }
