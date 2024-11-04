@@ -66,7 +66,7 @@ interface InputProps {
   className?: string
   id: string
 }
-export function Input({
+export default function Input({
   variant = Variants.Primary,
   size = Sizes.Medium,
   value,
