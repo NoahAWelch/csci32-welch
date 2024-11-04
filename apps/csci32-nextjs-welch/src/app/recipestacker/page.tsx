@@ -1,6 +1,6 @@
 'use client'
-import RecipeHome from '@/components/Recipe/RecipeHome'
-import { RecipeProvider } from '@/context/RecipeContext'
+import RecipeHome from '../Components/Recipe/RecipeHome'
+import { RecipeProvider } from '../context/recipeContext'
 
 export default function Home() {
   return (

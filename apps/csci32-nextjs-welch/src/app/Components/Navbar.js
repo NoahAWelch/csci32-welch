@@ -16,6 +16,10 @@ const navbarList = [
     title: 'guessing game',
     href: '/Games/random-number-guesser',
   },
+  {
+    title: 'Recipe stacker',
+    href: '/recipestacker',
+  },
 ]
 
 export default function Navbar() {

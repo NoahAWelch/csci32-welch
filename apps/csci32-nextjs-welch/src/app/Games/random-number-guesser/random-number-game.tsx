@@ -2,7 +2,7 @@
 import { Button } from '../../../../../../packages/ui/src/button'
 import { FormEventHandler, useState } from 'react'
 import { GuessingGameEngineProps } from './page'
-import Input from '../../../../../../packages/ui/src/input'
+import { Input } from '../../../../../../packages/ui/src/input'
 import { Variants } from '../../../../../../packages/ui/src/variant'
 import { getRandomInteger } from '../../../../../../packages/math/src/getRandomInteger'
 

@@ -8,6 +8,7 @@ export type CreateRecipeProps = {
   description: string
 }
 async function postHelper({ path, body }: { path: string; body: string }) {
+  console.log('API URL:', process.env.NEXT_PUBLIC_RECIPESTACKER_API_URL) // Log the environment variable
   return fetch(`${process.env.NEXT_PUBLIC_RECIPESTACKER_API_URL}${path}`, {
     method: 'POST',
     body,
