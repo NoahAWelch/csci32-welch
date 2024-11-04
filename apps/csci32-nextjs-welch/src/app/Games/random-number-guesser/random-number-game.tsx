@@ -68,7 +68,7 @@ export default function RandomNumberGame({ randomNumber, endGame, maxGuessCount 
             placeholder="Enter"
             value={guess}
             variant={Variants.Primary}
-            setValue={(newValue) => setGuess(Number(newValue))}
+            // setValue={(newValue) => setGuess(Number(newValue))}
           />
           <div>{feedBack}</div>
           <div>you have guessed {guessCount} times</div>
