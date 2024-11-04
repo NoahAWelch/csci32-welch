@@ -1,5 +1,5 @@
 'use client'
-import { Input } from '@repo/ui/input'
+import Input from '@repo/ui/input'
 import { Button } from '../../../../../packages/ui/src/button'
 import { Sizes } from '../../../../../packages/ui/src/size'
 import { Variants } from '../../../../../packages/ui/src/variant'

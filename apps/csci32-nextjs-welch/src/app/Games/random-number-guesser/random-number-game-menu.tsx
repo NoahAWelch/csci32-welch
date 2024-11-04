@@ -3,7 +3,7 @@ import { Button } from '../../../../../../packages/ui/src/button'
 import { GuessingGameMenuProps } from './page'
 import { FormEventHandler, useState } from 'react'
 import Variants from '../../../../../../packages/ui/src/input'
-import { Input } from '../../../../../../packages/ui/src/input'
+import Input from '../../../../../../packages/ui/src/input'
 
 export default function RandomNumberGameMenu({ startGame }: GuessingGameMenuProps) {
   const [settings, gameSettings] = useState(false)
