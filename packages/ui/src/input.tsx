@@ -56,6 +56,7 @@ import { noop } from 'lodash'
 interface InputProps {
   variant?: Variants
   size?: Sizes
+  setValue: any
   placeholder?: string
   type?: HTMLInputTypeAttribute
   value?: any
@@ -70,6 +71,7 @@ export default function Input({
   variant = Variants.Primary,
   size = Sizes.Medium,
   value,
+
   name,
   id,
   defaultValue,
