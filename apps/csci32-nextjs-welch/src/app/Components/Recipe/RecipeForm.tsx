@@ -83,6 +83,7 @@ export function RecipeForm() {
             <Label htmlFor="recipe-description">Recipe description</Label>
             <Input
               name="recipe-description"
+              setValue
               id="recipe-description"
               placeholder="Enter a recipe description"
               value={recipeFormData.description}
@@ -114,6 +115,7 @@ export function RecipeForm() {
               <Input
                 name={`ingredient-name-${index}`}
                 value={ingredient.name}
+                setValue
                 //variant={Variants.Secondary2}
                 id={`ingredient-name-${index}`}
                 onChange={(newIngredientName) => {
@@ -142,6 +144,7 @@ export function RecipeForm() {
               <Input
                 name={`ingredient-quantity-${index}`}
                 value={quantity}
+                setValue
                 variant={Variants.Secondary}
                 id={`ingredient-quantity-${index}`}
                 onChange={(newQuantity) => {
@@ -170,6 +173,7 @@ export function RecipeForm() {
               <Input
                 name={`ingredient-unit-${index}`}
                 value={unit}
+                setValue
                 variant={Variants.Secondary}
                 id={`ingredient-unit-${index}`}
                 onChange={(newUnit) => {
