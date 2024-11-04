@@ -72,6 +72,7 @@ export function RecipeForm() {
               name="recipe-name"
               id="recipe-name"
               placeholder="Enter a recipe name"
+              setValue
               value={recipeFormData.name}
               onChange={(newName) => {
                 setRecipeFormData({ ...recipeFormData, name: newName })
