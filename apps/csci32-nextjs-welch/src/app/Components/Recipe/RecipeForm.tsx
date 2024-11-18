@@ -5,13 +5,13 @@ import { Field } from '@repo/ui/field'
 import { FieldGroup } from '@repo/ui/fieldGroup'
 import { useContext, useState } from 'react'
 import { Button } from '@repo/ui/button'
-import { getVariant, Variants } from '@repo/ui/variant'
+import { Variants } from '@repo/ui/variant'
 import { Header } from '@repo/ui/header'
 import { RecipeContext } from '../../context/recipeContext'
 import { CreateRecipeProps, createRecipe } from '../../hook/useRecipes'
 
 export function RecipeForm() {
-  const { setShowRecipeForm } = useContext(RecipeContext)
+  const { setShowRecipeForm, mutate } = useContext(RecipeContext)
   const [recipeFormData, setRecipeFormData] = useState({ name: '', description: '' })
   const [ingredientMeasurements, setIngredientMeasurements] = useState([
     {
@@ -58,6 +58,7 @@ export function RecipeForm() {
     }
     await createRecipe(recipeData)
     setRecipeFormData({ name: '', description: '' })
+    mutate()
     setShowRecipeForm(false)
     alert(`Your recipe ${recipeName} has been added`)
   }
@@ -72,7 +73,6 @@ export function RecipeForm() {
               name="recipe-name"
               id="recipe-name"
               placeholder="Enter a recipe name"
-              setValue
               value={recipeFormData.name}
               onChange={(newName) => {
                 setRecipeFormData({ ...recipeFormData, name: newName })
@@ -83,7 +83,6 @@ export function RecipeForm() {
             <Label htmlFor="recipe-description">Recipe description</Label>
             <Input
               name="recipe-description"
-              setValue
               id="recipe-description"
               placeholder="Enter a recipe description"
               value={recipeFormData.description}
@@ -101,7 +100,6 @@ export function RecipeForm() {
                 {ingredientMeasurements.length > 1 && (
                   <Button
                     variant={Variants.TertiaryReview}
-                    //className="bg-purple-600"
                     onClick={() => {
                       const newIngredientMeasurements = ingredientMeasurements.filter((item, idx) => index !== idx)
                       setIngredientMeasurements(newIngredientMeasurements)
@@ -115,14 +113,10 @@ export function RecipeForm() {
               <Input
                 name={`ingredient-name-${index}`}
                 value={ingredient.name}
-                setValue
-                //variant={Variants.Secondary2}
                 id={`ingredient-name-${index}`}
                 onChange={(newIngredientName) => {
                   const newIngredientMeasurements = [
-                    // take the ingredients before the current index
                     ...ingredientMeasurements.slice(0, index),
-                    // update the ingredient at the current index
                     {
                       ...ingredientMeasurements[index],
                       ingredient: {
@@ -133,7 +127,6 @@ export function RecipeForm() {
                       unit: ingredientMeasurements[index]?.unit ?? '',
                       quantity: ingredientMeasurements[index]?.quantity ?? '',
                     },
-                    // take the ingredients after the current index
                     ...ingredientMeasurements.slice(index + 1),
                   ]
                   setIngredientMeasurements(newIngredientMeasurements)
@@ -144,14 +137,11 @@ export function RecipeForm() {
               <Input
                 name={`ingredient-quantity-${index}`}
                 value={quantity}
-                setValue
                 variant={Variants.Secondary}
                 id={`ingredient-quantity-${index}`}
                 onChange={(newQuantity) => {
                   const newIngredientMeasurements = [
-                    // take the ingredients before the current index
                     ...ingredientMeasurements.slice(0, index),
-                    // update the ingredient at the current index
                     {
                       ...ingredientMeasurements[index],
                       ingredient: {
@@ -162,7 +152,6 @@ export function RecipeForm() {
                       quantity: newQuantity,
                       unit: ingredientMeasurements[index]?.unit ?? '',
                     },
-                    // take the ingredients after the current index
                     ...ingredientMeasurements.slice(index + 1),
                   ]
                   setIngredientMeasurements(newIngredientMeasurements)
@@ -173,14 +162,11 @@ export function RecipeForm() {
               <Input
                 name={`ingredient-unit-${index}`}
                 value={unit}
-                setValue
                 variant={Variants.Secondary}
                 id={`ingredient-unit-${index}`}
                 onChange={(newUnit) => {
                   const newIngredientMeasurements = [
-                    // take the ingredients before the current index
                     ...ingredientMeasurements.slice(0, index),
-                    // update the ingredient at the current index
                     {
                       ...ingredientMeasurements[index],
                       ingredient: {
@@ -190,7 +176,6 @@ export function RecipeForm() {
                       unit: newUnit,
                       quantity: ingredientMeasurements[index]?.quantity ?? '',
                     },
-                    // take the ingredients after the current index
                     ...ingredientMeasurements.slice(index + 1),
                   ]
                   setIngredientMeasurements(newIngredientMeasurements)
@@ -204,8 +189,6 @@ export function RecipeForm() {
         <Flex className="justify-end gap-2">
           <Button
             variant={Variants.Secondary2}
-            // variant={Variants.Secondary}
-            //className={`${getVariant(Variants)} other-class-names`}
             onClick={() => {
               setIngredientMeasurements([
                 ...ingredientMeasurements,
@@ -223,11 +206,7 @@ export function RecipeForm() {
             Add an ingredient
           </Button>
 
-          <Button
-            type="submit" //className="bg-green-700"
-            variant={Variants.Secondary2}
-            // variant={Variants.Secondary}
-          >
+          <Button type="submit" variant={Variants.Secondary2}>
             Enter
           </Button>
         </Flex>

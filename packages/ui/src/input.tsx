@@ -56,7 +56,7 @@ import { noop } from 'lodash'
 interface InputProps {
   variant?: Variants
   size?: Sizes
-  setValue: any
+  //setValue: any
   placeholder?: string
   type?: HTMLInputTypeAttribute
   value?: any

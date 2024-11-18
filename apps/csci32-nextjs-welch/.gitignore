@@ -1,5 +1,15 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+authorCard.tsx
+authorResults..tsx
+authorSearch.tsx
+authorForm.tsx
+authorHome.tsx
+bookList.tsx
+authorContext.tsx
+useAuthors.ts
+
+
 # dependencies
 /node_modules
 /.pnp

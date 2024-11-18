@@ -58,7 +58,7 @@ interface ButtonProps {
   className?: string
   href?: string
   onClick?: () => void
-  type?: 'button' | 'submit' | 'reset'
+  type?: 'button' | 'submit' | 'reset' | 'disabled'
   size?: Sizes
   variant?: Variants
 }

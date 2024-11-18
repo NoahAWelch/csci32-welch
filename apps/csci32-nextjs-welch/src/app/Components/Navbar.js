@@ -20,6 +20,10 @@ const navbarList = [
     title: 'Recipe stacker',
     href: '/recipestacker',
   },
+  //{
+  // title: 'Book',
+  // href: '/book',
+  // },
 ]
 
 export default function Navbar() {

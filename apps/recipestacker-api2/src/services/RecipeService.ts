@@ -20,6 +20,7 @@ interface FindOneRecipeProps {
 
 interface FindManyRecipeProps {
   name?: string
+  ingredients?: string
   sortColumn?: string
   sortOrder?: SortOrder
   take?: number
@@ -65,7 +66,6 @@ export class RecipeService {
     sortOrder,
     sortColumn,
   }: GetRecipeOrderByProps): Prisma.UserOrderByWithRelationInput | Prisma.UserOrderByWithRelationInput[] {
-    //RecipeOrderByWithRelationInput
     return {
       [sortColumn]: sortOrder,
     }
@@ -90,7 +90,6 @@ export class RecipeService {
 
   async updateOneRecipe(props: UpdateOneRecipeProps) {
     this.logger.info({ props }, 'updateOneRecipes')
-    // const user_id = ''
     const { user_id } = await this.prisma.user.findFirstOrThrow()
     const { ingredient_measurements, recipe_id, ...rest } = props
     const updatedRecipe = await this.prisma.recipe.update({
@@ -141,15 +140,38 @@ export class RecipeService {
 
   async findManyRecipes(props: FindManyRecipeProps) {
     this.logger.info({ props }, 'findManyRecipes')
-    const { name, sortColumn = 'name', sortOrder = SortOrder.ASC, take = DEFAULT_TAKE, skip = DEFAULT_SKIP } = props
+    const {
+      name,
+      ingredients,
+      sortColumn = 'name',
+      sortOrder = SortOrder.ASC,
+      take = DEFAULT_TAKE,
+      skip = DEFAULT_SKIP,
+    } = props
+    const ingredientsArray = ingredients ? ingredients.split(',') : []
     const orderBy = this.getRecipeOrderBy({ sortColumn, sortOrder })
-    return this.prisma.recipe.findMany({
+    const recipes = await this.prisma.recipe.findMany({
+      //return this.prisma.recipe.findMany({
       where: {
-        name,
+        name: {
+          contains: name,
+        },
+        AND: ingredientsArray.map((ingredient) => ({
+          ingredient_measurements: {
+            some: {
+              ingredient: {
+                name: {
+                  contains: ingredient,
+                },
+              },
+            },
+          },
+        })),
       },
       orderBy: {
         name: SortOrder.ASC,
       },
+
       take,
       skip,
       include: {
@@ -160,6 +182,7 @@ export class RecipeService {
         },
       },
     })
+    return recipes
   }
 
   async createOneRecipe(props: CreateOneRecipeProps) {

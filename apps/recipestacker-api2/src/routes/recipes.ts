@@ -56,6 +56,7 @@ const recipe: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
         description: 'Endpoint to get multiple recipes',
         querystring: Type.Object({
           name: Type.Optional(Type.String()),
+          ingredients: Type.Optional(Type.String()),
           sortColumn: Type.Optional(Type.Any()),
           sortOrder: Type.Optional(Type.Any()),
           take: Type.Optional(Type.Number()),
@@ -70,6 +71,7 @@ const recipe: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
     async function (request, reply) {
       const recipes = await fastify.recipeService.findManyRecipes({
         name: request.query.name,
+        ingredients: request.query.ingredients,
         sortColumn: request.query.sortColumn,
         sortOrder: request.query.sortOrder,
         take: request.query.take,

@@ -6,6 +6,7 @@ import { getInputSizesStyles, Sizes } from './size'
 export type TagProps = {
   children: React.ReactNode
   onClickX?: () => void
+
   className?: string
   variant?: Variants
 }
