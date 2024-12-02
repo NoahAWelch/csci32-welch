@@ -141,7 +141,7 @@ export class RecipeService {
     return updatedRecipe
   }*/
 
-    updatedRecipe = await this.prisma.recipe.update({
+    const updatedRecipe = await this.prisma.recipe.update({
       where: {
         recipe_id,
       },
@@ -185,6 +185,7 @@ export class RecipeService {
         },
       },
     })
+    return updatedRecipe
   }
 
   async findManyRecipes(props: FindManyRecipeProps) {
