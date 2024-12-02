@@ -5,7 +5,7 @@ import { IngredientMeasurement, RecipeContext } from '../../context/recipeContex
 import { Variants } from '@repo/ui/variant'
 import { Sizes } from '@repo/ui/size'
 import { useContext } from 'react'
-import { deleteRecipe } from '../../hook/useRecipes'
+import { deleteRecipe, getRecipe } from '../../hook/useRecipes'
 
 export type RecipeCardProps = {
   recipe_id: string
@@ -22,15 +22,15 @@ export default function RecipeCard({ name, description, ingredient_measurements,
         <Header>{name}</Header>
         <Flex className="gap-2 ">
           <Button
-          size={Sizes.Medium}
-          variant={Variants.Primary}
-           onClick={() =>  { async () => {
-    const newRecipe = await getRecipe(recipe_id)
-    setRecipeId(recipe_id)
-    setRecipe(newRecipe)
-    setShowRecipeForm(true)
-  }}
-  >
+            size={Sizes.Medium}
+            variant={Variants.Primary}
+            onClick={async () => {
+              const newRecipe = await getRecipe(recipe_id)
+              setRecipeId(recipe_id)
+              setRecipe(newRecipe)
+              setShowRecipeForm(true)
+            }}
+          >
             Update
           </Button>
 
