@@ -20,32 +20,29 @@ model User {
 
 model Book {
   book_id            String      @id @default(cuid())
-  //author_id String
-  book_name          String?
+ // book_name          String?
   book_description String?
   book_properties BookProperties[]
- // author Author @relation(fields: [author_id], references: [author_id])
-
 }
 
 model BookProperties {
   @@id([book_id, author_id])
 book_id String
+book   Book   @relation(fields: [book_id], references: [book_id])
 author_id String
 author Author @relation (fields: [author_id], references: [author_id])
-book   Book   @relation(fields: [book_id], references: [book_id])
-genre String?
+genre String
 book_rating        Int @default(0)
-book_synopsis   String?
-book_reccomendation String?
+book_synopsis   String
+book_reccomendation String
 }
 
 model Author {
   author_id          String @id @default(cuid())
   author_name        String?
   author_description String?
+   is_deleted Boolean @default(false)
   book_properties BookProperties[]
-  //books Book[]
   user User       @relation(fields: [user_id], references: [user_id])
   user_id         String
 }

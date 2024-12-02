@@ -38,6 +38,6 @@
     "typescript": "^5"
   },
   "prisma": {
-    "schema": "packages/recipestacker-db/prisma/schema.prisma"
+    "schema": "packages/book-database/prisma/schema.prisma"
   }
 }

@@ -12,8 +12,8 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "prisma": {
-    "schema": "packages/recipestacker-db/prisma/schema.prisma",
-    "seed": "tsx packages/recipestacker-db/src/seed.ts"
+    "schema": "packages/book-database/prisma/schema.prisma",
+    "seed": "tsx packages/book-database/src/seed.ts"
   },
   "devDependencies": {
     "@repo/eslint-config": "*",

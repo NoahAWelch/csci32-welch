@@ -29,10 +29,10 @@ interface FindManyRecipeProps {
 
 interface CreateIngredientMeasurementProps {
   ingredient_id?: string
-  ingredient_name?: string
-  ingredient_description?: string
-  unit?: string
-  quantity?: number
+  ingredient_name: string
+  ingredient_description: string
+  unit: string
+  quantity: number
 }
 
 interface UpdateOneRecipeProps {
@@ -40,6 +40,7 @@ interface UpdateOneRecipeProps {
   name: string
   description: string
   ingredient_measurements: CreateIngredientMeasurementProps[]
+  is_deleted: boolean
 }
 
 interface CreateOneRecipeProps {
@@ -77,6 +78,7 @@ export class RecipeService {
     return this.prisma.recipe.findFirst({
       where: {
         recipe_id,
+        is_deleted: false,
       },
       include: {
         ingredient_measurements: {
@@ -92,6 +94,7 @@ export class RecipeService {
     this.logger.info({ props }, 'updateOneRecipes')
     const { user_id } = await this.prisma.user.findFirstOrThrow()
     const { ingredient_measurements, recipe_id, ...rest } = props
+    /*
     const updatedRecipe = await this.prisma.recipe.update({
       where: {
         recipe_id,
@@ -136,6 +139,52 @@ export class RecipeService {
       },
     })
     return updatedRecipe
+  }*/
+
+    updatedRecipe = await this.prisma.recipe.update({
+      where: {
+        recipe_id,
+      },
+      data: {
+        ...rest,
+        user: {
+          connect: { user_id },
+        },
+        ingredient_measurements: {
+          deleteMany: {},
+          upsert: ingredient_measurements?.map(
+            ({ ingredient_id, quantity, unit, ingredient_name, ingredient_description }) => ({
+              where: {
+                ingredient_id_recipe_id: {
+                  ingredient_id: ingredient_id || '',
+                  recipe_id,
+                },
+              },
+              update: {
+                quantity,
+                unit,
+              },
+              create: {
+                ingredient: ingredient_id
+                  ? {
+                      connect: {
+                        ingredient_id,
+                      },
+                    }
+                  : {
+                      create: {
+                        name: ingredient_name,
+                        description: ingredient_description,
+                      },
+                    },
+                unit,
+                quantity,
+              },
+            }),
+          ),
+        },
+      },
+    })
   }
 
   async findManyRecipes(props: FindManyRecipeProps) {
@@ -153,6 +202,7 @@ export class RecipeService {
     const recipes = await this.prisma.recipe.findMany({
       //return this.prisma.recipe.findMany({
       where: {
+        is_deleted: false,
         name: {
           contains: name,
         },
@@ -171,7 +221,6 @@ export class RecipeService {
       orderBy: {
         name: SortOrder.ASC,
       },
-
       take,
       skip,
       include: {

@@ -1,5 +1,5 @@
 import fp from 'fastify-plugin'
-import { RecipeService } from '../services/RecipeService.js'
+import { RecipeService } from '../services/RecipeService'
 import { FP_PRISMA } from './prisma.js'
 
 export const FP_RECIPE_SERVICE = 'recipeService'

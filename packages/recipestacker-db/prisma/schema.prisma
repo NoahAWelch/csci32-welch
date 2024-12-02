@@ -4,6 +4,7 @@ datasource db {
   url      = env("DATABASE_URL")
  // url       = env("NEXT_PUBLIC_RECIPESTACKER_API_URL")
   relationMode = "prisma"
+
 }
 
 generator client {
@@ -38,6 +39,7 @@ model Recipe {
   recipe_id     String @id @default(cuid())
   name            String?
   description     String?
+  is_deleted Boolean @default(false)
   ingredient_measurements IngredientMeasurement[]
   user User       @relation(fields: [user_id], references: [user_id])
   user_id         String
