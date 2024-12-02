@@ -1,12 +1,12 @@
 'use client'
-import AuthorHome from '../Components/Books/authorHome'
+import RecipeHome from '../Components/Recipe/RecipeHome'
 //import AuthorHome from '../Components/Books/BookHome'
-import { AuthorProvider } from '../context/authorContext'
+import { RecipeProvider } from '../context/recipeContext'
 
 export default function Home() {
   return (
-    <AuthorProvider>
-      <AuthorHome />
-    </AuthorProvider>
+    <RecipeProvider>
+      <RecipeHome />
+    </RecipeProvider>
   )
 }
