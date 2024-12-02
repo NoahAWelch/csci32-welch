@@ -94,8 +94,54 @@ export class RecipeService {
     this.logger.info({ props }, 'updateOneRecipes')
     const { user_id } = await this.prisma.user.findFirstOrThrow()
     const { ingredient_measurements, recipe_id, ...rest } = props
-
+    /*
     const updatedRecipe = await this.prisma.recipe.update({
+      where: {
+        recipe_id,
+      },
+      data: {
+        ...rest,
+        user: {
+          connect: { user_id },
+        },
+        ingredient_measurements: {
+          upsert: ingredient_measurements?.map(
+            ({ ingredient_id, ingredient_name, ingredient_description, quantity, unit }) => ({
+              where: {
+                ingredient_id_recipe_id: {
+                  ingredient_id: ingredient_id || '',
+                  recipe_id,
+                },
+              },
+              update: {
+                quantity,
+                unit,
+              },
+              create: {
+                ingredient: ingredient_id
+                  ? {
+                      connect: {
+                        ingredient_id,
+                      },
+                    }
+                  : {
+                      create: {
+                        name: ingredient_name,
+                        description: ingredient_description,
+                      },
+                    },
+                unit,
+                quantity,
+              },
+            }),
+          ),
+        },
+      },
+    })
+    return updatedRecipe
+  }*/
+
+    updatedRecipe = await this.prisma.recipe.update({
       where: {
         recipe_id,
       },
@@ -154,6 +200,7 @@ export class RecipeService {
     const ingredientsArray = ingredients ? ingredients.split(',') : []
     const orderBy = this.getRecipeOrderBy({ sortColumn, sortOrder })
     const recipes = await this.prisma.recipe.findMany({
+      //return this.prisma.recipe.findMany({
       where: {
         is_deleted: false,
         name: {
