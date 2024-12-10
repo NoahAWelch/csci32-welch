@@ -27,7 +27,7 @@ interface FindManyAuthorProps {
   skip?: number
 }
 
-interface FindUserProps{
+interface FindUserProps {
   user_id: string
 }
 
@@ -78,8 +78,8 @@ export class AuthorService {
   }
 
   async findOneAuthor(props: FindOneAuthorProps) {
-    this.logger.info({ props }, 'findOneAuthors');
-    const { author_id } = props;
+    this.logger.info({ props }, 'findOneAuthors')
+    const { author_id } = props
     const author = await this.prisma.author.findFirst({
       where: {
         author_id,
@@ -91,11 +91,10 @@ export class AuthorService {
           },
         },
       },
-    }
-  );
-    console.log('Fetched Author:', author);
+    })
+    console.log('Fetched Author:', author)
 
-    return author;
+    return author
   }
 
   async updateOneAuthor(props: UpdateOneAuthorProps) {
@@ -152,7 +151,7 @@ export class AuthorService {
     return updatedAuthor
   }
 
-/*
+  /*
 async updateOneAuthor(props: UpdateOneAuthorProps) {
   this.logger.info({ props }, 'updateOneAuthor');
 
@@ -264,94 +263,81 @@ async updateOneAuthor(props: UpdateOneAuthorProps) {
           include: {
             book: true,
           },
-       },
+        },
       },
     })
 
     return authors
   }
 
-    async createOneAuthor(props: CreateOneAuthorProps) {
-      const { author_name, author_description, book_properties } = props;
-      const { user_id } = await this.prisma.user.findFirstOrThrow();
-      const author = await this.prisma.author.create({
-        data: {
-          user: {
-            connect: {
-              user_id,
-
-            },
+  async createOneAuthor(props: CreateOneAuthorProps) {
+    const { author_name, author_description, book_properties } = props
+    const { user_id } = await this.prisma.user.findFirstOrThrow()
+    const author = await this.prisma.author.create({
+      data: {
+        user: {
+          connect: {
+            user_id,
           },
-          author_name,
-          author_description,
         },
-      });
-      const author_id = author.author_id;
-      console.log('Generated author_id:', author_id);
+        author_name,
+        author_description,
+      },
+    })
+    const author_id = author.author_id
+    console.log('Generated author_id:', author_id)
 
-      if (book_properties.length > 0) {
-        await Promise.all(
-          book_properties.map(
-            async ({
-              book_id,
-              book_description,
-              book_name,
-              book_reccomendation,
-              book_rating,
-              book_synopsis,
-              genre,
-            }) => {
-              await this.prisma.bookProperties.create({
-                data: {
-                  author:{
-                    connect:{
-                      author_id,
-                    },
+    if (book_properties.length > 0) {
+      await Promise.all(
+        book_properties.map(
+          async ({ book_id, book_description, book_name, book_reccomendation, book_rating, book_synopsis, genre }) => {
+            await this.prisma.bookProperties.create({
+              data: {
+                author: {
+                  connect: {
+                    author_id,
                   },
-                  genre,
-                  book_synopsis,
-                  book_reccomendation,
-                  book_rating,
-                  book: book_id
-                    ? {
-                        connect: { book_id },
-                      }
-                    : {
-                        create: {
-                          book_name,
-                          book_description,
-                          author: {
-                            connect: { author_id },
-                          },
-                          user: {
-                            connect: { user_id },
-                          },
+                },
+                genre,
+                book_synopsis,
+                book_reccomendation,
+                book_rating,
+                book: book_id
+                  ? {
+                      connect: { book_id },
+                    }
+                  : {
+                      create: {
+                        book_name,
+                        book_description,
+                        author: {
+                          connect: { author_id },
+                        },
+                        user: {
+                          connect: { user_id },
                         },
                       },
-                },
-              });
-            }
-          )
-        );
-      }
-      return author;
+                    },
+              },
+            })
+          },
+        ),
+      )
     }
+    return author
+  }
 
+  async getTopBooksByUserId(props: FindUserProps) {
+    const { user_id } = props
+    const authors = await this.prisma.book.findMany({
+      where: {
+        user_id,
+      },
+      include: {
+        book_properties: true,
+      },
+    })
 
-
-async getTopBooksByUserId(props: FindUserProps) {
-  const { user_id } = props;
-const authors = await this.prisma.book.findMany({
-  where: {
-    user_id,
-  },
-  include: {
-    book_properties: true,
-  },
-  //take: 10, // Limit to the top 10 results
-});
-
-return authors
-}
-
+    return authors
+  }
 }
