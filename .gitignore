@@ -22,6 +22,46 @@ coverage
 # Vercel
 .vercel
 
+ ../.VirtualBox/
+        ../.bash_history
+        ../.docker/
+        ../.gitconfig
+        ../.gitignore
+        ../.ssh/
+        ../.vscode/
+        ../AppData/
+        ../Contacts/
+        ../Desktop/
+        ../Downloads/
+        ../Favorites/
+        ../Links/
+        ../Music/
+        ../NTUSER.DAT
+        ../NTUSER.DAT{a2332f18-cdbf-11ec-8680-002248483d79}.TM.blf
+        ../NTUSER.DAT{a2332f18-cdbf-11ec-8680-002248483d79}.TMContainer00000000000000000001.regtrans-ms
+        ../NTUSER.DAT{a2332f18-cdbf-11ec-8680-002248483d79}.TMContainer00000000000000000002.regtrans-ms
+        ../OneDrive/
+        ../PycharmProjects/
+        ../Saved Games/
+        ../Searches/
+        ../Videos/
+        ../VirtualBox VMs/
+        ../c++/
+        ../csci32-welch/
+        ../firstnode.zip
+        ../firstnode/
+        ../go/
+        ../hello/
+        ../my programs/
+        ../npm-cache/
+        ../ntuser.dat.LOG1
+        ../ntuser.dat.LOG2
+        ../ntuser.ini
+        ../package-lock.json
+        ../package.json
+        ../react-lab-2/
+        ../test/
+
 # Build Outputs
 .next/
 out/
